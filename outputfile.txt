@@ -1,0 +1,65 @@
+Lexeme	Token
+{	Separator
+WHITESPACE
+{	Separator
+WHITESPACE
+{	Separator
+WHITESPACE
+(	Separator
+WHITESPACE
+(	Separator
+WHITESPACE
+/	Operator
+WHITESPACE
++	Operator
+WHITESPACE
+*	Operator
+WHITESPACE
+*	Operator
+WHITESPACE
+*	Operator
+WHITESPACE
+-	Operator
+WHITESPACE
++	Operator
+WHITESPACE
+-	Operator
+WHITESPACE
+*	Operator
+WHITESPACE
+/	Operator
+WHITESPACE
+*	Operator
+WHITESPACE
+*	Operator
+WHITESPACE
+)	Separator
+WHITESPACE
+)	Separator
+(	Separator
+(	Separator
+)	Separator
+)	Separator
++	Operator
++	Operator
+-	Operator
+*	Operator
+/	Operator
+*	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator
+=	Operator

@@ -1,28 +1,24 @@
-// ConsoleApplication3.cpp : Defines the entry point for the console application.
-//
+/*Project 1: Lexical analyzer which takes in charactersform an input file */
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
 
-
 class Lex {
 private:
 	int table[12][27] = {
-
-
-	{2,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,6,1,5,1,1,1},
-	{2,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,7,9,9,9},
-	{10,3,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,10,10,10,10,10,10,10,10},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,12,6,6,6,6,12},
-	{7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,7,8,8,8},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{10,11,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+	{ 2,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,6,1,5,1,1,1 },
+	{ 2,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,7,9,9,9 },
+	{ 10,3,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,10,10,10,10,10,10,10,10 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+	{ 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,12,6,6,6,6,12 },
+	{ 7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,7,8,8,8 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+	{ 10,11,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
 
 	};
 
@@ -31,8 +27,6 @@ private:
 	char c;
 	char arr[30];
 	std::string test = "while";
-
-
 
 public:
 	Lex(std::string, std::string);
@@ -48,38 +42,33 @@ public:
 	int final_state(int state);
 	void parse(int state, int index);
 	bool searchKeyword(char keyword[]);
-
 };
 
 void Lex::flushArray() {
 	for (int i = 0; arr[i] != '\0'; i++) {
 		if (arr[i] != '\0')
 			arr[i] = '\0';
-
 	}
 	return;
-
 }
 
 bool Lex::searchKeyword(char keyword[]) {
-    //Declare string array that contains all keywords.
-    std::string key[15] = { "int", "float", "bool", "if", "else", "then", "do",
-        "while", "whileend", "do", "doend", "for", "and", "or", "function" };
+	//Declare string array that contains all keywords.
+	std::string key[15] = { "int", "float", "bool", "if", "else", "then", "do",
+		"while", "whileend", "do", "doend", "for", "and", "or", "function" };
 
-    std::string word;
-    //Check if keyword from keyword() is in the array.
-    for (int i = 0; i <= 30; i++) {
-        if (keyword[i] != '\0')
-            word = word + keyword[i];
-    }
-    for (int j = 0; j <= 14; j++) {
-        if (word == key[j])
-            return true;
-    }
-    return false;
-
+	std::string word;
+	//Check if keyword from keyword() is in the array.
+	for (int i = 0; i <= 30; i++) {
+		if (keyword[i] != '\0')
+			word = word + keyword[i];
+	}
+	for (int j = 0; j <= 14; j++) {
+		if (word == key[j])
+			return true;
+	}
+	return false;
 }
-
 
 void Lex::appendArray() {
 	int i;
@@ -100,78 +89,9 @@ void Lex::appendArray() {
 			std::cout << "There was an error with indexing" << std::endl;
 		if (firstRun == true)
 			firstRun = false;
-
-
 	}
 	return;
-
 }
-
-
-bool Lex::keywordWhile() {
-	int i = 1; //Initial State, w has been printed.
-
-	while (i != 6) {
-		c = getChar();
-		switch (i)
-		{
-		case 1: //Sets state to 2
-			if (c == 'h') {
-				outputStream << c;
-				i = 2;
-				break;
-			}
-			else {
-				//GO TO IDENTIFIER FUNCTION
-			}
-
-		case 2: //Sets state to 3
-			if (c == 'i') {
-				outputStream << c;
-				i = 3;
-				break;
-			}
-			else {
-				//GO TO IDENTIFIER FUNCTION
-			}
-
-		case 3: //Sets state to 4
-			if (c == 'l') {
-				outputStream << c;
-				i = 4;
-				break;
-			}
-			else {
-				//GO TO IDENTIFIER FUNCTION
-			}
-
-
-		case 4: //Sets state to 5
-			if (c == 'e') {
-				outputStream << c;
-				i = 5;
-				break;
-			}
-			else {
-				//GO TO IDENTIFIER FUNCTION
-			}
-
-		case 5: //Sets state to 6, exit state.
-			if (c == ' ' || c == '\n') {
-				outputStream << '\t' << "Keyword" << std::endl;
-				i = 6;
-				break;
-			}
-			else {
-				//GO TO IDENTIFIER FUNCTION
-			}
-		}
-	}
-	return true;
-}
-
-
-
 
 Lex::~Lex() {
 	inputStream.close();
@@ -191,8 +111,8 @@ Lex::Lex(std::string a, std::string b) {
 		exit(-1);
 	}
 	outputStream.open(b);
-	outputStream << "Lexeme" << std::setw(20) << "Token" << std::endl;
-
+	outputStream << "TOKENS" << std::setw(25) << "LEXEMES" << std::endl;
+	outputStream << "_____________________________" << std::endl;
 }
 
 int Lex::char_to_col(char x) {
@@ -269,33 +189,31 @@ int Lex::final_state(int state) {
 void Lex::parse(int state, int index) {
 	switch (state) {
 	case(4):
-		outputStream << arr << std::setw(20) << "Operator" << std::endl;
+		outputStream << "Operator  "  << std::setw(20) << arr << std::endl;
 		break;
 	case(5):
-		outputStream << arr << std::setw(20) << "Separator" << std::endl;
+		outputStream << "Separator " << std::setw(20) << arr << std::endl;
 		break;
 	case(8):
 		arr[index] = '\0';
-		outputStream << arr << std::setw(20) << "Identifier" << std::endl;
+		outputStream << "Identifier" << std::setw(20) << arr << std::endl;
 		break;
 	case(9):
 		arr[index] = '\0';
-		if (searchKeyword(arr))
-			outputStream << arr << std::setw(20) << "Keyword" << std::endl;
+		if (searchKeyword(arr)) {
+			outputStream << "Keyword   " << std::setw(20)<< arr << std::endl;
+		}
 		else
-			outputStream << arr << std::setw(20) << "Identifier" << std::endl;
+			outputStream << "Identifier" << std::setw(20) << arr << std::endl;
 		break;
 	case(10):
 		arr[index] = '\0';
-		outputStream << arr << std::setw(20) << "Number" << std::endl;
+		outputStream << "Integer   " << std::setw(20) << arr << std::endl;
 		break;
 	case(12):
 		break;
 	}
-
-
 }
-
 
 void Lex::DFSM() {
 	int index = 0;
@@ -315,7 +233,7 @@ void Lex::DFSM() {
 
 		if (final_state(state)) {
 			if (state == 8 || state == 9 || state == 10)
-				if ( x != -52)
+				if (x != -52)
 					inputStream.putback(x);
 			parse(state, index);
 			state = 1;
@@ -323,83 +241,14 @@ void Lex::DFSM() {
 			flushArray();
 
 		}
-			
-
 	}
-
-
-
 }
-
-
 
 void Lex::writeArray() {
 	std::cout << arr << std::endl;
 	system("pause");
 	return;
 }
-
-void Lex::readinput() {
-	while (!inputStream.eof()) {
-		c = getChar();
-		switch (c)
-		{
-		case ('{'):
-			outputStream << c << '\t' << "Separator" << std::endl;
-			break;
-		case ('}'):
-			outputStream << c << '\t' << "Separator" << std::endl;
-			break;
-		case ('('):
-			outputStream << c << '\t' << "Separator" << std::endl;
-			break;
-		case (')'):
-			outputStream << c << '\t' << "Separator" << std::endl;
-			break;
-		case (';'):
-			outputStream << c << '\t' << "Punctuation" << std::endl;
-			break;
-		case ('='):
-			outputStream << c << '\t' << "Operator" << std::endl;
-			break;
-		case ('+'):
-			outputStream << c << '\t' << "Operator" << std::endl;
-			break;
-		case ('-'):
-			outputStream << c << '\t' << "Operator" << std::endl;
-			break;
-		case ('*'):
-			outputStream << c << '\t' << "Operator" << std::endl;
-			break;
-		case ('/'):
-			outputStream << c << '\t' << "Operator" << std::endl;
-			break;
-		case (' '):
-			outputStream << "WHITESPACE" << std::endl;
-			break;
-		case('\n'):
-			break;
-		default:
-			if (c >= 97 && c <= 121) {
-				appendArray();
-				break;
-			}
-			else
-				break;
-
-		}
-
-
-
-
-
-		std::cout << c << std::endl;
-	}
-
-
-
-}
-
 
 int main()
 {
@@ -408,10 +257,9 @@ int main()
 
 
 	open.DFSM();
-//	open.readinput();
-//	open.writeArray();
-//	open.flushArray();
+	//	open.readinput();
+	//	open.writeArray();
+	//	open.flushArray();
 
 	return 0;
 }
-

@@ -1,7 +1,7 @@
 /* Group Members:
-	Paul Lindberg
-	Kunal Matthews
-	Jason Eirich
+Paul Lindberg
+Kunal Matthews
+Jason Eirich
 Project 1: Lexical analyzer which takes in characters form an input file and   */
 
 #include <iostream>
@@ -12,7 +12,7 @@ Project 1: Lexical analyzer which takes in characters form an input file and   *
 class Lex {
 private:
 	int table[12][27] = {
-	{ 2,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,6,1,5,1,1,1 },
+		{ 2,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,6,1,5,1,1,1 },
 	{ 2,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,7,9,9,9 },
 	{ 10,3,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,10,10,10,10,10,10,10,10 },
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
@@ -35,12 +35,8 @@ private:
 
 public:
 	Lex(std::string, std::string);
-	void writeArray();
-	void readinput();
 	char getChar();
 	~Lex();
-	bool keywordWhile();
-	void appendArray();
 	void flushArray();
 	void DFSM();
 	int char_to_col(char x);
@@ -75,28 +71,6 @@ bool Lex::searchKeyword(char keyword[]) {
 	return false;
 }
 
-void Lex::appendArray() {
-	int i;
-	bool firstRun = true;
-
-	while (true) {
-		if (!firstRun)
-			c = getChar();
-		if ((c == ' ') || (c == '\n'))
-			return;
-		for (i = 0; arr[i] != '\0'; i++) {
-			//Stuff
-		}
-		if (arr[i] == '\0') {
-			arr[i] = c;
-		}
-		else
-			std::cout << "There was an error with indexing" << std::endl;
-		if (firstRun == true)
-			firstRun = false;
-	}
-	return;
-}
 
 Lex::~Lex() {
 	inputStream.close();
@@ -194,7 +168,7 @@ int Lex::final_state(int state) {
 void Lex::parse(int state, int index) {
 	switch (state) {
 	case(4):
-		outputStream << "Operator  "  << std::setw(20) << arr << std::endl;
+		outputStream << "Operator  " << std::setw(20) << arr << std::endl;
 		break;
 	case(5):
 		outputStream << "Separator " << std::setw(20) << arr << std::endl;
@@ -206,7 +180,7 @@ void Lex::parse(int state, int index) {
 	case(9):
 		arr[index] = '\0';
 		if (searchKeyword(arr)) {
-			outputStream << "Keyword   " << std::setw(20)<< arr << std::endl;
+			outputStream << "Keyword   " << std::setw(20) << arr << std::endl;
 		}
 		else
 			outputStream << "Identifier" << std::setw(20) << arr << std::endl;
@@ -249,11 +223,6 @@ void Lex::DFSM() {
 	}
 }
 
-void Lex::writeArray() {
-	std::cout << arr << std::endl;
-	system("pause");
-	return;
-}
 
 int main()
 {

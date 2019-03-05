@@ -1,4 +1,9 @@
-/*Project 1: Lexical analyzer which takes in charactersform an input file */
+/* Group Members:
+	Paul Lindberg
+	Kunal Matthews
+	Jason Eirich
+Project 1: Lexical analyzer which takes in characters form an input file and   */
+
 #include <iostream>
 #include <fstream>
 #include <string>

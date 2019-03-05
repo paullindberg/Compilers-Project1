@@ -262,9 +262,7 @@ int main()
 
 
 	open.DFSM();
-	//	open.readinput();
-	//	open.writeArray();
-	//	open.flushArray();
+	open.flushArray();
 
 	return 0;
 }

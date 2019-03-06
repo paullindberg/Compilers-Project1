@@ -11,7 +11,7 @@ Project 1: Lexical analyzer which takes in characters form an input file and   *
 
 class Lex {
 private:
-	int table[12][27] = {
+	int table[13][27] = {
 		{ 2,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,6,1,5,1,1,1 },
 	{ 2,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,7,9,9,9 },
 	{ 10,3,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,10,10,10,10,10,10,10,10 },
@@ -22,7 +22,8 @@ private:
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-	{ 10,11,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10 },
+	{ 13,11,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
 
 	};
@@ -155,8 +156,8 @@ int Lex::char_to_col(char x) {
 }
 
 int Lex::final_state(int state) {
-	int finals[] = { 4,5,8,9,10,12 };
-	for (int i = 0; i < 6; i++) {
+	int finals[] = { 4,5,8,9,10,12, 13 };
+	for (int i = 0; i < 7; i++) {
 		if (state == finals[i]) {
 			return state;
 		}
@@ -189,6 +190,9 @@ void Lex::parse(int state, int index) {
 		arr[index] = '\0';
 		outputStream << "Integer   " << std::setw(20) << arr << std::endl;
 		break;
+	case (13):
+		arr[index] = '\0';
+		outputStream << "Float   " << std::setw(20) << arr << std::endl;
 	case(12):
 		break;
 	}
@@ -211,8 +215,8 @@ void Lex::DFSM() {
 
 
 		if (final_state(state)) {
-			if (state == 8 || state == 9 || state == 10)
-				if (x != -52)
+			if (state == 8 || state == 9 || state == 10 || state == 13)
+				if (x > 0)
 					inputStream.putback(x);
 			parse(state, index);
 			state = 1;

@@ -1,8 +1,12 @@
-/* Group Members:
+/* 
+Group Members:
 Paul Lindberg
 Kunal Matthews
 Jason Eirich
-Project 1: Lexical analyzer which takes in characters form an input file and   */
+
+Project 1: Lexical analyzer which takes in characters form an input file, reads 
+the file character by character and decipher what Lexeme/Token pair they are. This 
+pair is written out to the output file and is seperate in the same way stated above.*/
 
 #include <iostream>
 #include <fstream>
@@ -11,6 +15,7 @@ Project 1: Lexical analyzer which takes in characters form an input file and   *
 
 class Lex {
 private:
+	//2 dimensional state table which shows all possible states and inputs
 	int table[13][27] = {
 		{ 2,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,6,1,5,1,1,1 },
 	{ 2,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,7,9,9,9 },
@@ -46,6 +51,7 @@ public:
 	bool searchKeyword(char keyword[]);
 };
 
+//cleans the array used to store characters for use with functions
 void Lex::flushArray() {
 	for (int i = 0; arr[i] != '\0'; i++) {
 		if (arr[i] != '\0')
@@ -54,17 +60,22 @@ void Lex::flushArray() {
 	return;
 }
 
+/*receives and array of characters that is read in from the input file and 
+iteratively checks it against the key array which contains all of the keywords
+in the RAT18 language*/
 bool Lex::searchKeyword(char keyword[]) {
 	//Declare string array that contains all keywords.
 	std::string key[15] = { "int", "float", "bool", "if", "else", "then", "do",
 		"while", "whileend", "do", "doend", "for", "and", "or", "function" };
 
 	std::string word;
-	//Check if keyword from keyword() is in the array.
+	/*take every element from the refrenced array and concatinate them
+	to create a string*/
 	for (int i = 0; i <= 30; i++) {
 		if (keyword[i] != '\0')
 			word = word + keyword[i];
 	}
+	//compare the string with the key array
 	for (int j = 0; j <= 14; j++) {
 		if (word == key[j])
 			return true;
@@ -95,6 +106,7 @@ Lex::Lex(std::string a, std::string b) {
 	outputStream << "_____________________________" << std::endl;
 }
 
+//Logic behind the state table, used to switch states
 int Lex::char_to_col(char x) {
 	if (x == -52)
 		return 26;
@@ -198,6 +210,9 @@ void Lex::parse(int state, int index) {
 	}
 }
 
+/*DFSM function which drives the state switchig algoritim. The initial state is 1
+and as the function procedes it reads the input character by character and switches states 
+according to the results received from the functions above.*/
 void Lex::DFSM() {
 	int index = 0;
 	int state = 1;
@@ -231,8 +246,6 @@ void Lex::DFSM() {
 int main()
 {
 	Lex open("inputfile.txt", "outputfile.txt");
-
-
 
 	open.DFSM();
 	open.flushArray();

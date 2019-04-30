@@ -1,0 +1,83 @@
+TOKENS                  LEXEMES
+_____________________________
+Operator                     %
+Operator                     %
+Identifier                   x
+Operator                     =
+Identifier                   a
+Operator                     +
+Identifier                   b
+Separator                    ;
+------ GRAMMAR ------
+Identifier                   x
+Operator                   =
+S -> id = E
+E -> TE'
+T -> FT'
+Identifier                   a
+F -> id
+Operator                   +
+E' -> +TE'
+T -> FT'
+Identifier                   b
+F -> id
+------ TOKENS ------
+Identifier                   z
+Operator                     =
+Identifier                   c
+Operator                     +
+Identifier                   d
+Separator                    ;
+------ GRAMMAR ------
+Identifier                   z
+Operator                   =
+S -> id = E
+E -> TE'
+T -> FT'
+Identifier                   c
+F -> id
+Operator                   +
+E' -> +TE'
+T -> FT'
+Identifier                   d
+F -> id
+------ TOKENS ------
+Identifier                   a
+Operator                     =
+Identifier                   e
+Operator                     -
+Identifier                   f
+Separator                    ;
+------ GRAMMAR ------
+Identifier                   a
+Operator                   =
+S -> id = E
+E -> TE'
+T -> FT'
+Identifier                   e
+F -> id
+Operator                   -
+E' -> -TE'
+T -> FT'
+Identifier                   f
+F -> id
+------ TOKENS ------
+Identifier                   b
+Operator                     =
+Identifier                   g
+Operator                     *
+Identifier                   n
+Separator                    ;
+------ GRAMMAR ------
+Identifier                   b
+Operator                   =
+S -> id = E
+E -> TE'
+T -> FT'
+Identifier                   g
+F -> id
+Operator                   *
+T' -> *FT'
+Identifier                   n
+F -> id
+------ TOKENS ------

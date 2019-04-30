@@ -384,11 +384,13 @@ void Lex::parse(int state, int index) {
 	switch (state) {
 	case(4):
 		outputStream << "Operator  " << std::setw(20) << arr << std::endl;
-		sendtoGrammar("Operator");
+		if (recording)
+			sendtoGrammar("Operator");
 		break;
 	case(5):
 		outputStream << "Separator " << std::setw(20) << arr << std::endl;
-		if (arr[0] == ';') {
+		if (arr[0] == ';' && recording) {
+			recording = false;
 			outputStream << "------ GRAMMAR ------" << std::endl;
 			sendtoGrammar("$");
 			S();
@@ -401,6 +403,7 @@ void Lex::parse(int state, int index) {
 	case(8):
 		arr[index] = '\0';
 		outputStream << "Identifier" << std::setw(20) << arr << std::endl;
+		recording = true;
 		sendtoGrammar("Identifier");
 
 		break;
@@ -408,22 +411,26 @@ void Lex::parse(int state, int index) {
 		arr[index] = '\0';
 		if (searchKeyword(arr)) {
 			outputStream << "Keyword   " << std::setw(20) << arr << std::endl;
-			sendtoGrammar("Keyword");
+			if (recording)
+				sendtoGrammar("Keyword");
 		}
 		else {
 			outputStream << "Identifier" << std::setw(20) << arr << std::endl;
+			recording = true;
 			sendtoGrammar("Identifier");
 		}
 		break;
 	case(10):
 		arr[index] = '\0';
 		outputStream << "Integer   " << std::setw(20) << arr << std::endl;
-		sendtoGrammar("Integer");
+		if (recording)
+			sendtoGrammar("Integer");
 		break;
 	case (13):
 		arr[index] = '\0';
 		outputStream << "Float   " << std::setw(20) << arr << std::endl;
-		sendtoGrammar("Float");
+		if (recording)
+			sendtoGrammar("Float");
 		break;
 	case(12):
 		break;

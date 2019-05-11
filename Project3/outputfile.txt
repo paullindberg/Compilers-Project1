@@ -1,0 +1,12 @@
+TOKENS                  LEXEMES
+_____________________________
+Keyword                  while
+Separator                    (
+Identifier                  id
+Operator                     >
+Identifier                 foo
+Separator                    )
+Separator                    {
+Identifier               thing
+Separator                    }
+Grammar Complete

@@ -1,4 +1,4 @@
-while(id){
+while(id>so){
 
 thing
 

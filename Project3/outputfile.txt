@@ -4,7 +4,7 @@ Keyword                  while
 Separator                    (
 Identifier                  id
 Operator                     >
-Identifier                 foo
+Identifier                  so
 Separator                    )
 Separator                    {
 Identifier               thing
